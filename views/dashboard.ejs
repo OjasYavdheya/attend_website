@@ -1,0 +1,11 @@
+<h2>Dashboard</h2>
+<form method="POST" action="/mark">
+  <button type="submit">Mark Attendance</button>
+</form>
+
+<h3>Your Records:</h3>
+<ul>
+  <% records.forEach(record => { %>
+    <li><%= record.date %> - <%= record.time %> - <%= record.status %></li>
+  <% }) %>
+</ul>
