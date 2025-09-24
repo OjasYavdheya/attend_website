@@ -17,12 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+require("dotenv").config();
+
 app.use(session({
-  secret: "secret123",
+  secret: process.env.SESSION_SECRET || "secret123",
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: "mongodb://localhost:27017/attendanceApp" })
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }));
+
 
 // Routes
 app.use("/", authRoutes);
