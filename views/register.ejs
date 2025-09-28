@@ -5,10 +5,9 @@
     type="text" 
     name="roll_no" 
     placeholder="Roll No"
-    pattern="\d{1,6}" 
+    oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
     maxlength="6" 
     required 
-    title="Roll number must be 1 to 6 digits only"
     >
   <input type="password" name="password" placeholder="Password" required>
   <button type="submit">Register</button>
