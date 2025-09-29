@@ -1,0 +1,67 @@
+/* Background with image */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("background.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Register Box */
+.register-box {
+  background: #0c2f5c;
+  color: #fff;
+  padding: 27px 20px;
+  border-radius: 20px;
+  width: 275px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Heading */
+.register-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.4em;
+}
+
+/* Inputs */
+.register-box input {
+  width: 75%;
+  padding: 12px;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Button */
+.register-box button {
+  width: 40%;
+  padding: 14px;
+  background: #2f80ed;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.register-box button:hover {
+  background: #1d5dcc;
+}

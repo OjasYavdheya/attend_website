@@ -1,14 +1,29 @@
-<h2>Register</h2>
-<form method="POST" action="/register">
-  <input type="text" name="name" placeholder="Name" required>
-  <input 
-    type="text" 
-    name="roll_no" 
-    placeholder="Roll No"
-    oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
-    maxlength="6" 
-    required 
-    >
-  <input type="password" name="password" placeholder="Password" required>
-  <button type="submit">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="register-box">
+      <h2>Student<br>Registration</h2>
+      <form method="POST" action="/register">
+        <input 
+          type="text" 
+          name="roll_no"
+          maxlength="6" 
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+          placeholder="Roll No." 
+          required
+          >
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
