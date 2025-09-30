@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attendance Register</title>
-  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="/CSS/register.css">
+  <link rel="stylesheet" hreF="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
+  <div class="register-container">
     <div class="register-box">
-      <h2>Student<br>Registration</h2>
+      <h2>STUDENT<br>REGISTRATION</h2>
       <form method="POST" action="/register">
-        <input 
+
+        <!-- Roll No. -->
+        <div class="register-input-box">
+          <i class="fa fa-id-card"></i>
+          <input 
           type="text" 
           name="roll_no"
           maxlength="6" 
@@ -19,8 +24,20 @@
           placeholder="Roll No." 
           required
           >
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="password" name="password" placeholder="Password" required>
+        </div>
+        
+        <!-- Name -->
+        <div class="register-input-box">
+          <i class="fa fa-user"></i>
+          <input type="text" name="name" placeholder="Name" required>
+        </div>
+
+        <!-- Password -->
+        <div class="register-input-box">
+          <i class="fa fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+
         <button type="submit">Register</button>
       </form>
     </div>

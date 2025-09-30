@@ -11,7 +11,7 @@ body {
 }
 
 /* Container */
-.container {
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,16 +30,33 @@ body {
 
 /* Heading */
 .register-box h2 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-top: 1px;
   line-height: 1.4em;
 }
 
+/*  */
+.register-input-box {
+  position: relative;
+  margin: 5x 0;
+  width: 100%;
+}
+
+/*  */
+.register-input-box i {
+  position: absolute;
+  left: 28PX;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 18PX;
+}
+
 /* Inputs */
-.register-box input {
+.register-input-box input {
   width: 75%;
-  padding: 12px;
+  padding: 12px 0 15px 45px;
   margin: 10px 0px;
   border: none;
   border-radius: 8px;
