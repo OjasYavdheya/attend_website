@@ -9,9 +9,13 @@ router.post("/mark", async (req, res) => {
   if (!req.session.userId) return res.redirect("/login");
 
   try {
-    const today = new Date();
-    const startOfDay = new Date(today.setHours(0, 0, 0, 0));
-    const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+    const now = new Date();
+
+    const startOfDay = new Date(now);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(now);
+    endOfDay.setHours(23, 59, 59, 999);
 
     // Check if already marked today
     const existing = await Attendance.findOne({
@@ -23,14 +27,36 @@ router.post("/mark", async (req, res) => {
       return res.status(400).send("Attendance already marked today");
     }
 
-    // Save new attendance
+    // Cutoff time = 10:00 AM
+    const cutoff = new Date(now);
+    cutoff.setHours(10, 0, 0, 0);
+
+    let status;
+    let message;
+
+    if (now > cutoff) {
+      status = "Absent";
+      message = "You are late and have been marked absent.";
+    } else {
+      status = "Present";
+      message = "Attendance marked successfully.";
+    }
+
     const record = new Attendance({
       studentId: req.session.userId,
-      status: "Present"
+      date: now,
+      status
     });
 
     await record.save();
-    res.redirect("/dashboard");
+
+    // Option 1: Show message directly
+    return res.send(message);
+
+    // Option 2 (if you want to redirect and flash message):
+    // req.session.message = message;
+    // return res.redirect("/dashboard");
+
   } catch (err) {
     console.error(err);
     res.status(500).send("Error marking attendance");
