@@ -1,6 +1,7 @@
 const express = require("express");
 const Attendance = require("../models/Attendance");
 const Student = require("../models/Student");
+const cron = require("node-cron");
 
 const router = express.Router();
 
@@ -50,16 +51,45 @@ router.post("/mark", async (req, res) => {
 
     await record.save();
 
-    // Option 1: Show message directly
     return res.send(message);
-
-    // Option 2 (if you want to redirect and flash message):
-    // req.session.message = message;
-    // return res.redirect("/dashboard");
-
   } catch (err) {
     console.error(err);
     res.status(500).send("Error marking attendance");
+  }
+});
+
+// =========================
+// AUTO-MARK ABSENTEES
+// =========================
+// Runs every day at 10:01 AM
+cron.schedule("1 10 * * *", async () => {
+  try {
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
+    const todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999);
+
+    const students = await Student.find({});
+
+    for (let student of students) {
+      const existing = await Attendance.findOne({
+        studentId: student._id,
+        date: { $gte: todayStart, $lte: todayEnd }
+      });
+
+      if (!existing) {
+        await Attendance.create({
+          studentId: student._id,
+          date: new Date(),
+          status: "Absent"
+        });
+      }
+    }
+
+    console.log("✅ All unmarked students have been auto-marked Absent.");
+  } catch (err) {
+    console.error("❌ Error in auto-marking absentees:", err);
   }
 });
 
