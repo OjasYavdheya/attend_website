@@ -1,11 +1,92 @@
-<h2>Dashboard</h2>
-<form method="POST" action="/mark">
-  <button type="submit">Mark Attendance</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
 
-<h3>Your Records:</h3>
-<ul>
-  <% records.forEach(record => { %>
-    <li><%= record.date %> - <%= record.time %> - <%= record.status %></li>
-  <% }) %>
-</ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Gradient inspired by both images (warm + cool tones) */
+      background: linear-gradient(135deg, #f6c270, #ff9966, #4facfe, #00c6ff);
+      background-size: 300% 300%;
+      animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .dashboard {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .dashboard h1 {
+      font-size: 28px;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: block;
+      width: 200px;
+      padding: 12px;
+      margin: 15px auto;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 30px;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-attendance {
+      background: #ffffff;
+      color: #28a745;
+    }
+
+    .btn-attendance:hover {
+      background: #28a745;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <form method="POST" action="/mark">
+      <button type="submit" class="btn btn-attendance">Mark Attendance</button>
+    </form>
+  </div>
+</body>
+
+</html>
