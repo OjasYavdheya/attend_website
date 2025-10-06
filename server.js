@@ -45,3 +45,5 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+console.log("Server timezone:", Intl.DateTimeFormat().resolvedOptions().timeZone);
+console.log("Current server time:", new Date().toLocaleString());
